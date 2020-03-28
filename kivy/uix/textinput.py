@@ -2249,9 +2249,18 @@ class TextInput(FocusBehavior, Widget):
                 'padding': (0, 0)}
             self._label_cached = Label(**kw)
         return self._line_options
-
+    
+    def reshaper(self, name):
+        import arabic_reshaper
+        import bidi
+        name = str(name)
+        name = arabic_reshaper.reshape(name)
+        name = bidi.algorithm.get_display(name)
+        return name
+    
     def _create_line_label(self, text, hint=False):
         # Create a label from a text, using line options
+        text = self.reshaper(text)
         ntext = text.replace(u'\n', u'').replace(u'\t', u' ' * self.tab_width)
         if self.password and not hint:  # Don't replace hint_text with *
             ntext = self.password_mask * len(ntext)
