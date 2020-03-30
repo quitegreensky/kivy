@@ -2252,10 +2252,10 @@ class TextInput(FocusBehavior, Widget):
     
     def reshaper(self, name):
         import arabic_reshaper
-        import bidi
+        from bidi import algorithm
         name = str(name)
         name = arabic_reshaper.reshape(name)
-        name = bidi.algorithm.get_display(name)
+        name = algorithm.get_display(name)
         return name
     
     def _create_line_label(self, text, hint=False):
