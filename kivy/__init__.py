@@ -48,7 +48,7 @@ __version__ = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 if not RELEASE:
     # if it's a rcx release, it's not proceeded by a period. If it is a
     # devx release, it must start with a period
-    __version__ += 'rc1'
+    __version__ += 'rc3'
 
 try:
     from kivy.version import __hash__, __date__
@@ -179,7 +179,10 @@ def kivy_register_post_configuration(callback):
 
 def kivy_usage():
     '''Kivy Usage: %s [OPTION...]::
-
+        
+            Set KIVY_NO_ARGS=1 in your environment or before you import Kivy to
+            disable Kivy's argument parser.
+        
         -h, --help
             Prints this help message.
         -d, --debug
